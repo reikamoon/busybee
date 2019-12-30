@@ -18,6 +18,11 @@ def home():
     #Home
     return render_template('home.html')
 
+@app.route('/today')
+def todo():
+    #Show To Do List
+    return render_template('today.html')
+
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=os.environ.get('PORT', 5000))
