@@ -1,0 +1,13 @@
+/* stylesheet */
+
+body {
+  height: 3000px;
+  background: linear-gradient(#0066cc 0%, #66b3ff 51%,  #99ccff 75%);
+}
+/* Fonts */
+p {
+  font-family:Arial, Verdana, sans-serif;
+}
+h1 {
+  font-family:Arial, Verdana, sans-serif;
+}
