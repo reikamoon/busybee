@@ -21,7 +21,7 @@ def home():
 @app.route('/today')
 def todo():
     #Show To Do List
-    return render_template('today.html')
+    return render_template('todolistalt.html')
 
 
 if __name__ == '__main__':
