@@ -1,1 +1,12 @@
 <!-- grid showing items in the shopping list db -->
+{% for products in shoppinglist %}
+<div class="w3-row-padding w3-padding-16 w3-center" id="products">
+<div class="w3-quarter">
+  <a href='/{{ shoppinglist.id }}'><img src="{{ shoppinglist.image_url }}" alt= "product" height= "300" width = "200" ></a>
+    <b>{{ shoppinglist.name }}</b><br>
+    <p>{{ shoppinglist.price }}</p><br>
+    <p>{{ shoppinglist.url }}</p>
+    <p><a href='/edit/{{ busybee._id }}'>Edit</a></p>
+</div>
+</div>
+{% endfor %}

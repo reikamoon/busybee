@@ -1,1 +1,13 @@
 <!-- grid showing tasks need to be completed -->
+{% for busybees in busybee %}
+<div class="w3-row-padding w3-padding-16 w3-center" id="products">
+<div class="w3-quarter">
+  <a href='/{{ busybee.id }}'><img src="{{ busybee.image_url }}" alt= "task" height= "300" width = "200" ></a>
+    <b>{{ busybee.name }}</b><br>
+    <p>{{ busybee.date }}</p><br>
+    <p>{{ busybee.description }}</p><br>
+    <p>{{ busybee.url }}</p>
+    <p><a href='/edit/{{ busybee._id }}'>Edit</a></p>
+</div>
+</div>
+{% endfor %}
