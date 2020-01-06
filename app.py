@@ -23,6 +23,10 @@ def todo():
     #Show To Do List
     return render_template('todolistalt.html')
 
+@app.route('/shoppinglist')
+def shopping():
+    #Show Shopping List
+    return render_template('shopping.html')
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=os.environ.get('PORT', 5000))

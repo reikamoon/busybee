@@ -1,0 +1,27 @@
+<!-- Form for Shopping List -->
+<fieldset>
+<legend><center><h1>Shopping List</h1></center></legend>
+<!-- Name -->
+<h1><center><div class='form-group'>
+      <label for='shoppinglist-name'>Name</label><br>
+      <input class='form-control' id='name' type='text' name='name' value='{{ products.name }}'/>
+  </div>
+
+<!-- Price -->
+<div class='form-group'>
+      <label for='clothes-price'>Price</label><br>
+      <input class='form-control' id='price' type='number' name='price' value='{{ products.price }}'/>
+  </div>
+
+<!-- URL -->
+<div class ='form-group'>
+    <label for='shoppinglist-url'>URL</label><br>
+    <input class ='form-control' id='url' type='url' name='url' value= '{{ products.url }}'/>
+    </div>
+
+<!-- Image URL -->
+<div class='form-group'>
+      <label for='shoppinglist-image'>Image</label><br>
+      <input class='form-control' id='image-url' type='url' name='image_url' value='{{ products.image_url }}'/>
+  </div></center></h1>
+</fieldset>
