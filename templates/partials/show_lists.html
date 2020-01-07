@@ -1,0 +1,8 @@
+<!-- grid showing lists in the shopping list db -->
+{% for list in lists %}
+<div class="w3-row-padding w3-padding-16 w3-center" id="products">
+<div class="w3-quarter">
+  <a href="/{{ list.id }}">{{ list.name }}</a>
+</div>
+</div>
+{% endfor %}
