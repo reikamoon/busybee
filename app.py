@@ -36,9 +36,9 @@ def show_list(list_id):
     print(list)
     listsum = 0
     for products in product_list:
-        listsum += int(products['price'])
+        listsum += float(products['price'])
 
-    budget = int(list['budget'])
+    budget = float(list['budget'])
     budgetdiff = budget - listsum
     print(budgetdiff)
     return render_template('list_view.html', list=list, listsum=listsum, budgetdiff=budgetdiff)
