@@ -53,8 +53,8 @@ ul li:hover {
 <br><br><br>
 <center><h1><b>{{ list.title }}</b></h1></center>
 <center><h1>Budget: ${{ list.budget }}</h1></center>
-<center><h2>Total Cost of this List: ${{ listsum }}</h2></center>
-<center><h2>Budget - Total Cost = ${{ budgetdiff }}</h2></center>
+<center><h2>Total Cost of this List: ${{ listsum|round(2) }}</h2></center>
+<center><h2>Budget - Total Cost = ${{ budgetdiff|round(2) }}</h2></center>
 <center>
 <div class = "miki">
 <a  href= "/mylists/{{ list._id }}/edit"><i class="fa fa-pencil-square-o"></i> Edit List</a>

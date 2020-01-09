@@ -11,8 +11,8 @@
 <div class="w3-quarter">
 <center><font size="10" color="black"><a href="mylists/{{ list._id }}">>{{ list.title }}</a></font>
 <center><font size = "10" color = "black">Budget: ${{ list.budget }}</font></center>
-<center><font size = "5" color = "black">From this list, you spend ${{ prices[list._id] }}</font></center>
-<center><font size = "5" color = "black">and will have ${{ list.budget|float - prices[list._id] }} left over.</font></center>
+<center><font size = "5" color = "black">From this list, you spend ${{ prices[list._id]|round(2) }}</font></center>
+<center><font size = "5" color = "black">and will have ${{ list.budget|float|round(2) - prices[list._id]|round(2) }} left over.</font></center>
 <a class="miki" type="miki" href= "/mylists/{{ list._id }}/delete"><i class="fa fa-trash"></i></a>
 
 </center>
