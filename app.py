@@ -32,8 +32,16 @@ def view_lists():
 def show_list(list_id):
     #Show a single List
     list = lists.find_one({'_id': ObjectId(list_id)})
+    product_list = list['products']
     print(list)
-    return render_template('list_view.html', list=list)
+    listsum = 0
+    for products in product_list:
+        listsum += int(products['price'])
+
+    budget = int(list['budget'])
+    budgetdiff = budget - listsum
+    print(budgetdiff)
+    return render_template('list_view.html', list=list, listsum=listsum, budgetdiff=budgetdiff)
 
 
 @app.route('/mylists/new/list')
@@ -85,7 +93,7 @@ def list_delete(list_id):
 def new_product(list_id):
     #Create a new product
     list = lists.find_one({'_id': ObjectId(list_id)})
-    return render_template('Bnew_product.html', list=list, products={})
+    return render_template('Bnew_product.html', list=list, product=None)
 
 @app.route('/mylists/<list_id>', methods=['POST'])
 def submit_product(list_id):
