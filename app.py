@@ -39,7 +39,7 @@ def show_list(list_id):
         listsum += float(products['price'])
 
     budget = float(list['budget'])
-    budgetdiff = budget - listsum
+    budgetdiff = round(budget - listsum, 2)
     print(budgetdiff)
     return render_template('list_view.html', list=list, listsum=listsum, budgetdiff=budgetdiff)
 
