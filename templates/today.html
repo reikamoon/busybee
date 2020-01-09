@@ -141,18 +141,22 @@ input {
 </div>
 
 <ul id="myUL">
-  <li class="checked">Write Intensive Proposal (due Jan 6)</li>
-  <li class="checked">Create Github Repo</li>
-  <li class="checked">Create Database for busybee</li>
-  <li class="checked">Create HTML Templates</li>
-  <li class="checked">Get To-Do List Working</li>
-  <li class ="checked">Create slides</li>
-  <li>Do Presentation (due Jan 10)</li>
-  <li>Clean Room</li>
+
 </ul>
 
 <script>
 // Create a "close" button and append it to each list item
+if (localStorage.getItem('tasks')=== null) {
+  localStorage.setItem('tasks','[]');
+}
+var tasks = JSON.parse( localStorage.getItem('tasks') );
+for (let i = 0; i < tasks.length; i++) {
+  var li = document.createElement("li");
+  var t = document.createTextNode(tasks[i]);
+  li.appendChild(t);
+  document.getElementById("myUL").appendChild(li);
+
+}
 var myNodelist = document.getElementsByTagName("LI");
 var i;
 for (i = 0; i < myNodelist.length; i++) {
@@ -165,11 +169,15 @@ for (i = 0; i < myNodelist.length; i++) {
 
 // Click on a close button to hide the current list item
 var close = document.getElementsByClassName("close");
-var i;
-for (i = 0; i < close.length; i++) {
+for (let i = 0; i < close.length; i++) {
   close[i].onclick = function() {
     var div = this.parentElement;
     div.style.display = "none";
+    console.log(i)
+    let tasks = JSON.parse( localStorage.getItem('tasks') );
+    tasks.splice(i, 1)
+    console.log(tasks)
+    localStorage.setItem('tasks', JSON.stringify(tasks))
   }
 }
 
@@ -182,12 +190,14 @@ list.addEventListener('click', function(ev) {
 }, false);
 
 // Create a new list item when clicking on the "Add" button
-localStorage.setItem('name','Chris');
-let myName = localStorage.getItem('name');
 
 function newElement() {
   var li = document.createElement("li");
   var inputValue = document.getElementById("myInput").value;
+  let tasks = JSON.parse( localStorage.getItem('tasks') );
+  console.log(tasks)
+  tasks.push(inputValue)
+  localStorage.setItem('tasks', JSON.stringify(tasks))
   var t = document.createTextNode(inputValue);
   li.appendChild(t);
   if (inputValue === '') {
