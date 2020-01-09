@@ -2,28 +2,14 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<style>
-
-.productname {
-  position: static;
-  left: 100px;
-  top: 100px;
-}
-
-.productimage {
-  positon: static;
-  left: 100px;
-  top: 200px;
-}
-
-.price {
-  positon: static;
-  left: 100px;
-  top: 240px;
-}
-
-</style>
 <!-- show every product in shopping list -->
+<br><br><br>
+<!-- Product Name -->
+<h1><b>{{ list.name }}</b></h1>
+<center><h2><a href="/mylists/{{list._id}}/new">Add a Product</a></h2></center>
+{% for product in list.products %}
+<p>{{ product.name }}</p>
+{% endfor %}
 
 
 {% endblock content %}
