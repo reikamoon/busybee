@@ -152,7 +152,10 @@ if (localStorage.getItem('tasks')=== null) {
 var tasks = JSON.parse( localStorage.getItem('tasks') );
 for (let i = 0; i < tasks.length; i++) {
   var li = document.createElement("li");
-  var t = document.createTextNode(tasks[i]);
+  var t = document.createTextNode(tasks[i].value);
+  if(tasks[i].checked) {
+    li.classList.toggle("checked")
+  }
   li.appendChild(t);
   document.getElementById("myUL").appendChild(li);
 
@@ -182,13 +185,21 @@ for (let i = 0; i < close.length; i++) {
 }
 
 // Add a "checked" symbol when clicking on a list item
-var list = document.querySelector('ul');
-list.addEventListener('click', function(ev) {
-  if (ev.target.tagName === 'LI') {
-    ev.target.classList.toggle('checked');
+// var list = document.querySelector('ul');
+// list.addEventListener('click', function(ev) {
+//   if (ev.target.tagName === 'LI') {
+//     ev.target.classList.toggle('checked');
+//   }
+// }, false);
+myNodelist = document.getElementsByTagName("LI");
+for (let i = 0; i < myNodelist.length; i++) {
+  myNodelist[i].onclick = function() {
+    myNodelist[i].classList.toggle('checked');
+    let tasks = JSON.parse( localStorage.getItem('tasks'));
+    tasks[i].checked = !tasks[i].checked
+    localStorage.setItem('tasks', JSON.stringify(tasks))
   }
-}, false);
-
+}
 // Create a new list item when clicking on the "Add" button
 
 function newElement() {
@@ -196,7 +207,8 @@ function newElement() {
   var inputValue = document.getElementById("myInput").value;
   let tasks = JSON.parse( localStorage.getItem('tasks') );
   console.log(tasks)
-  tasks.push(inputValue)
+  let task = {value: inputValue, checked: true}
+  tasks.push(task)
   localStorage.setItem('tasks', JSON.stringify(tasks))
   var t = document.createTextNode(inputValue);
   li.appendChild(t);
