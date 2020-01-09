@@ -1,6 +1,7 @@
+![Busybee Logo](static/busybeelogo.png)
+
 busybee by reikamoon
 Uses: Python, HTML/CSS/Javascript, MongoDB, heroku, flask
-![Busybee Logo](static/busybeelogo.png)
 A heroku app that functions as a to do list.
 
 Features:
