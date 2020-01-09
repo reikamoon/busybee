@@ -26,7 +26,26 @@ def todo():
 @app.route('/mylists')
 def view_lists():
     #Show my shopping lists from db.lists
-    return render_template('Ashow_shoppinglist.html', lists=lists.find())
+    # list = lists.find_one({'_id': ObjectId(list_id)})
+    # product_list = list['products']
+    # listsum = 0
+    # for products in product_list:
+    #     listsum += float(products['price'])
+    #
+    # budget = float(list['budget'])
+    # budgetdiff = round(budget - listsum, 2)
+    list_list = lists.find()
+    prices = {}
+
+    for list in list_list:
+        product_list = list['products']
+        listsum = 0
+        for products in product_list:
+            listsum += float(products['price'])
+        prices[list['_id']] = listsum
+
+
+    return render_template('Ashow_shoppinglist.html', lists=lists.find(), prices=prices)
 
 @app.route('/mylists/<list_id>', methods=['GET'])
 def show_list(list_id):
