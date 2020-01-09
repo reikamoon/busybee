@@ -2,7 +2,12 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
+<!-- Include navbar on EVERY page -->
+{% include 'partials/navbar_b.html' %}
+
 <center><h1>Create a New List</h1></center>
+<form action="/mylists" method="post">
 {% include 'partials/list_form.html' %}
-<button class='btn btn-primary' type='submit'>Submit</button>
+<center><button class='btn btn-primary' type='submit'>Submit</button></center>
 {% endblock content %}

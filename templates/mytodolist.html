@@ -128,17 +128,20 @@ input {
 <body>
 
 <div id="myDIV" class="header">
-  <h2 style="margin:5px">My To Do List</h2>
-  <input type="text" id="myInput" placeholder="Title...">
+  <h1><script> document.write(new Date().toDateString()); </script></h1>
+  <h1 style="margin:5px">My To Do List</h1>
+  <br>
+  <input type="text" id="myInput" placeholder="Add...">
   <span onclick="newElement()" class="addBtn">Add</span>
 </div>
 
 <ul id="myUL">
-  <li class="checked">Finish/Submit intensive proposal</li>
-  <li class="checked">Create Github Repo</li>
-  <li class="checked">Set up HTML Templates</li>
-  <li class="checked">Set up Navbar</li>
-  <li>CRUD 1 Resource</li>
+  <li class="checked">Write Intensive Proposal (due Jan 6th)</li>
+  <li class="checked">Create github repo</li>
+  <li class="checked">Create HTML Templates</li>
+  <li class="checked">Create MongoDB</li>
+  <li class="checked">Deploy to heroku</li>
+  <li>Finish Front End</li>
 </ul>
 
 <script>
@@ -196,3 +199,8 @@ function newElement() {
       div.style.display = "none";
     }
   }
+}
+</script>
+
+</body>
+</html>

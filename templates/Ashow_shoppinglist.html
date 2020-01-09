@@ -1,9 +1,41 @@
 <!-- display items in shopping list -->
 {% extends 'base.html' %}
-
 {% block content %}
-<br><br><br>
-<center><h1>Shopping Lists</h1></center>
-{% include 'partials/show_lists.html' %}
 
+<!-- Add icon library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+.btn {
+  background-color: #0066cc;
+  border: none;
+  color: white;
+  padding: 12px 16px;
+  font-size: 20px;
+}
+
+/* Darker background on mouse-over */
+.btn:hover {
+  background-color: RoyalBlue;
+}
+
+.mika {
+background-color: #0066cc;
+padding: 12px 16px;
+font-size: 40px;
+}
+</style>
+
+<!-- Include navbar on EVERY page -->
+{% include 'partials/navbar.html' %}
+
+<br><br><br>
+<div class = "mika">
+<center><h1>Shopping Lists</h1></center>
+<center><a  href= "/mylists/new/list"><i class="fa fa-plus-circle"></i> New List</a>
+
+
+</center>
+<br>
+{% include 'partials/show_lists.html' %}
+</div>
 {% endblock content %}

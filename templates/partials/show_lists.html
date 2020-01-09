@@ -1,8 +1,11 @@
 <!-- grid showing lists in the shopping list db -->
+
+
 {% for list in lists %}
 <div class="w3-row-padding w3-padding-16 w3-center" id="list">
 <div class="w3-quarter">
-  <a href="/{{ list._id }}">{{ list.name }}</a>
+<center><font size="10" color="black"><a href="mylists/{{ list._id }}">{{ list.name }}</a></font>
+</center>
 </div>
 </div>
 {% endfor %}

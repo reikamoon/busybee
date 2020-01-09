@@ -1,13 +1,12 @@
 <!-- Edit an entry in the shopping list -->
 {% extends 'base.html' %}
-
 {% block content %}
-<form method='POST' action='/edit/{{list._id}}'>
-  {% include 'partials/clothes_form.html' %}
-    <!-- BUTTON -->
-    <div class='form-group'>
-                <button class='btn btn-primary' type='submit'>Submit</button>
-            </div>
-</form>
+
+<!-- Include navbar on EVERY page -->
+{% include 'partials/navbar_b.html' %}
+
+<form action="/mylists/{{ list._id }}/edit" method="POST">
+{% include 'partials/list_form.html' %}
+<center><button class='btn btn-primary' type='submit'>Submit</button></center>
 
 {% endblock content %}

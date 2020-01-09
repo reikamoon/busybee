@@ -1,28 +1,34 @@
 <!-- homepage -->
 {% extends 'base.html' %}
+<!-- Include navbar on EVERY page -->
+{% include 'partials/navbar.html' %}
+
 <!-- positioning -->
 <body>
 {% block content %}
 <br><br><br>
 <center>
-<h1>Hello, World!</h1>
+<h1> Today is... </h1>
+<h1><script> document.write(new Date().toDateString()); </script></h1>
 </center>
-
+<style>
+</style>
 <!-- tab gallery -->
 <!-- The four columns -->
 <div class="row">
   <div class="column">
-    <img src="static/placeholder.jpg" alt="Morning" style="width:100%" onclick="myFunction(this);">
+    <a href='/today'><img src="static/tdlist.jpg" alt="to do list" style="width:100%"></a>
   </div>
   <div class="column">
-    <img src="static/placeholder.jpg" alt="Afternoon" style="width:100%" onclick="myFunction(this);">
+    <a href='/mylists'><img src="static/shoplist.jpg" alt="shopping" style="width:100%"></a>
   </div>
   <div class="column">
-    <img src="static/placeholder.jpg" alt="Evening" style="width:100%" onclick="myFunction(this);">
+    <a href='/calculator'><img src="static/calculator.jpg" alt="calculator" style="width:100%"></a>
   </div>
   <div class="column">
-    <img src="static/placeholder.jpg" alt="Night" style="width:100%" onclick="myFunction(this);">
+    <a href='/about'><img src="static/placeholder.jpg" alt="bees" style="width:100%"></a>
   </div>
+
 </div>
 
 
@@ -32,7 +38,7 @@
   <div id="imgtext"></div>
 </div>
 
-<a href='/today'><img src="http://www.pngall.com/wp-content/uploads/2016/05/Click-Here-Download-PNG.png" alt= "button" height= "400" width = "500" ></a>
+
 <!-- script for tab gallery -->
 <script>
 function myFunction(imgs) {
@@ -42,6 +48,7 @@ function myFunction(imgs) {
   imgText.innerHTML = imgs.alt;
   expandImg.parentElement.style.display = "block";
 }
+
 </script>
 
 </body>

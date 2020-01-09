@@ -21,16 +21,16 @@ def home():
 @app.route('/today')
 def todo():
     #Show To Do List
-    return render_template('todolistalt.html')
+    return render_template('today.html')
 
 @app.route('/mylists')
 def view_lists():
     #Show my shopping lists from db.lists
     return render_template('Ashow_shoppinglist.html', lists=lists.find())
 
-@app.route('/<list_id>', methods=['GET', 'POST'])
+@app.route('/mylists/<list_id>', methods=['GET', 'POST'])
 def show_list(list_id):
-    #Show List
+    #Show a single List
     list = lists.find_one({'_id': ObjectId(list_id)})
     print(list)
     return render_template('list_view.html', list=list)
@@ -51,13 +51,13 @@ def submit_list():
     lists_id = lists.insert_one(new_list).inserted_id
     return redirect(url_for('view_lists', lists_id=lists_id))
 
-@app.route('/edit/<list_id>', methods = ['POST'])
+@app.route('/mylists/<list_id>/edit', methods = ['POST'])
 def edit_list():
     #edit my shopping list
     product_list = lists.find_one({'_id': ObjectId(list_id)})['products']
     return render_template('Aedit_shoppinglist.html', lists=product_list)
 
-@app.route('/edit/<list_id>', methods=['POST'])
+@app.route('/mylists/<list_id>/edit', methods=['POST'])
 def list_update(lists_id):
     #Save Edits to list and Update list in the database.
     updated_list = {
@@ -97,6 +97,15 @@ def submit_product(list_id):
     {'$set': {'products': product_list}})
     return redirect(url_for('show_list', list_id=list_id))
 
+# Calculator
+@app.route('/calculator')
+def calculator():
+    return render_template('calculator.html')
+
+#about
+@app.route('/about')
+def about():
+    return render_template('about.html')
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=os.environ.get('PORT', 5000))
