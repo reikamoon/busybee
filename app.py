@@ -28,7 +28,7 @@ def view_lists():
     #Show my shopping lists from db.lists
     return render_template('Ashow_shoppinglist.html', lists=lists.find())
 
-@app.route('/mylists/<list_id>', methods=['GET', 'POST'])
+@app.route('/mylists/<list_id>', methods=['GET'])
 def show_list(list_id):
     #Show a single List
     list = lists.find_one({'_id': ObjectId(list_id)})
@@ -39,37 +39,46 @@ def show_list(list_id):
 @app.route('/mylists/new/list')
 def new_list():
     #Create a New List
-    return render_template('Anew_shoppinglist.html', lists={}, title='New List')
+    return render_template('Anew_shoppinglist.html', list={}, title='New List', products=[None])
 
 @app.route('/mylists', methods=['POST'])
 def submit_list():
     #Submit a new list to the db.lists.
     new_list = {
-    'name': request.form.get('name'),
-    'products': request.form.get('products')
+    'title': request.form.get('title'),
+    'budget': request.form.get('budget'),
+    'products': [{'name': request.form.get('name'),'price': request.form.get('price'),'URL': request.form.get('url'),'image_url': request.form.get('image_url')}]
     }
     lists_id = lists.insert_one(new_list).inserted_id
     return redirect(url_for('view_lists', lists_id=lists_id))
 
-@app.route('/mylists/<list_id>/edit', methods = ['POST'])
-def edit_list():
+@app.route('/mylists/<list_id>/edit', methods = ['GET'])
+def edit_list(list_id):
     #edit my shopping list
-    product_list = lists.find_one({'_id': ObjectId(list_id)})['products']
-    return render_template('Aedit_shoppinglist.html', lists=product_list)
+    product_list = lists.find_one({'_id': ObjectId(list_id)})
+    return render_template('Aedit_shoppinglist.html', list=product_list, list_id=list_id, products=product_list['products'])
 
 @app.route('/mylists/<list_id>/edit', methods=['POST'])
-def list_update(lists_id):
+def list_update(list_id):
     #Save Edits to list and Update list in the database.
+    product_list = lists.find_one({'_id': ObjectId(list_id)})['products']
+    print(product_list)
+    product_list.append({'name': request.form.get('name'),'price': request.form.get('price'),'URL': request.form.get('url'),'image_url': request.form.get('image_url')})
     updated_list = {
-        'name': request.form.get('name'),
-        'products': request.form.get('products')
-    }
+        'title': request.form.get('title'),
+        'budget': request.form.get('budget'),
+        'products': product_list,
+        }
     lists.update_one(
         {'_id': ObjectId(list_id)},
         {'$set': updated_list})
     return redirect(url_for('view_lists', list_id=list_id))
 
-
+@app.route('/mylists/<list_id>/delete')
+def list_delete(list_id):
+    #Delete a product
+    lists.delete_one({'_id': ObjectId(list_id)})
+    return redirect(url_for('view_lists'))
 
 # products
 @app.route('/mylists/<list_id>/new')
@@ -82,20 +91,33 @@ def new_product(list_id):
 def submit_product(list_id):
     #Submit Product to Database and add to list
     product_list = lists.find_one({'_id': ObjectId(list_id)})['products']
-    print(product_list)
+    print("Product list: ", product_list)
     new_product = {
         'name': request.form.get('name'),
         'price': request.form.get('price'),
         'URL': request.form.get('url'),
         'image_url': request.form.get('image_url')
     }
-    print(new_product)
+    print("New product: ", new_product)
     product_list.append(new_product)
     # product_id = products.insert_one(new_product).inserted_id
     lists.update_one(
     {'_id': ObjectId(list_id)},
     {'$set': {'products': product_list}})
     return redirect(url_for('show_list', list_id=list_id))
+
+@app.route('/mylists/<list_id>/delete/<product_name>')
+def product_delete(list_id, product_name):
+    #Delete a product
+    product_list = lists.find_one({'_id': ObjectId(list_id)})['products']
+    for product in product_list:
+        if product['name'] == product_name:
+            product_list.remove(product)
+            break
+    lists.update_one(
+    {'_id': ObjectId(list_id)},
+    {'$set': {'products': product_list}})
+    return redirect(url_for('view_lists'))
 
 # Calculator
 @app.route('/calculator')

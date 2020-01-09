@@ -4,9 +4,17 @@
 <!-- Name -->
 <h1><center><div class='form-group'>
       <label for='list-name'>Enter a Name:</label><br>
-      <input class='form-control' id='name' type='text' name='name' value='{{ lists.name }}'/>
+      <input class='form-control' id='title' type='text' name='title' value='{{ list.title }}'/>
       <label for='list-budget'>Enter a Budget:</label><br>
-      <input class='form-control' id='budget' type='text' name='name' value='{{ lists.budget }}'/>
+      <input class='form-control' id='budget' type='text' name='budget' value='{{ list.budget }}'/>
+      <label for='list-products'>Add a starting item:</label><br>
+      {% if products != None %}
+        {% for product in products %}
+        {% include 'partials/product_form.html' %}
+        {% endfor %}
+      {% else %}
+        {% include 'partials/product_form.html' %}
+      {% endif %}
   </div>
 </center></h1>
 </fieldset>

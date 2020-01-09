@@ -19,7 +19,7 @@ ul {
 ul li {
   border: 1px solid #ddd;
   margin-top: -1px; /* Prevent double borders */
-  background-color: #39A9E8;
+  background-color: #0066cc;
   padding: 12px;
   text-decoration: none;
   font-family: Verdana, Arial, sans-serif;
@@ -51,7 +51,7 @@ ul li:hover {
 </style>
 <!-- show every product in shopping list -->
 <br><br><br>
-<center><h1><b>{{ list.name }}</b></h1></center>
+<center><h1><b>{{ list.title }}</b></h1></center>
 <center>
 <div class = "miki">
 <a  href= "/mylists/{{ list._id }}/edit"><i class="fa fa-pencil-square-o"></i> Edit List</a>
@@ -60,21 +60,13 @@ ul li:hover {
 </center>
 <ul>
 {% for product in list.products %}
-<center><li>{{ product.name }}<span class="close">&times;</span>
+<center><li>{{ product.name }}
 <a href='{{ product.URL }}'><img src="{{ product.image_url }}" alt= "Product" height= "100" width = "100" ></a>
 <br>
 Price: ${{ product. price }}
+<a class="miki" type="miki" href= "/mylists/{{ list._id }}/delete/{{ product.name }}"><i class="fa fa-trash"></i></a>
 </li></center>
 {% endfor %}
 </ul>
-<script>
-var closebtns = document.getElementsByClassName("close");
-var i;
 
-for (i = 0; i < closebtns.length; i++) {
-  closebtns[i].addEventListener("click", function() {
-    this.parentElement.style.display = 'none';
-  });
-}
-</script>
 {% endblock content %}
