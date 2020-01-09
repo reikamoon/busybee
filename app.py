@@ -5,11 +5,14 @@ from bson.objectid import ObjectId
 from pymongo import MongoClient
 import os
 
+# Databases
 host = os.environ.get('MONGODB_URI', 'mongodb://localhost:27017/bees')
 client = MongoClient(host=f'{host}?retryWrites=false')
 db = client.get_default_database()
 lists = db.lists
 products = db.products
+# db.lists is for shopping lists
+# db.products are for products on the list
 
 app = Flask(__name__)
 
@@ -25,15 +28,7 @@ def todo():
 
 @app.route('/mylists')
 def view_lists():
-    #Show my shopping lists from db.lists
-    # list = lists.find_one({'_id': ObjectId(list_id)})
-    # product_list = list['products']
-    # listsum = 0
-    # for products in product_list:
-    #     listsum += float(products['price'])
-    #
-    # budget = float(list['budget'])
-    # budgetdiff = round(budget - listsum, 2)
+    #View all lists along with budget, total spent, and budget difference. 
     list_list = lists.find()
     prices = {}
 
