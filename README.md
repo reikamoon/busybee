@@ -1,7 +1,7 @@
 ![Busybee Logo](static/busybeelogo.png)
 
-#busybee
-by reikamoon
+#busybee#
+by reikamoon\
 Uses: Python, HTML/CSS/Javascript, MongoDB, heroku, flask\
 A heroku app that functions as a to do list, and includes a shopping list creator.
 
