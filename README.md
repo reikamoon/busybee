@@ -10,6 +10,11 @@ To-Do List App\
 Shopping List Creator which allows users to set a budget for each list.\
 Access to two calculators, a sale calculator and a normal calculator.
 
+:honeybee: Set Up :honeybee:\
+No Set Up Required!\
+Completed Web-Based.
+
+
 :honeybee: Links/Resources Used :honeybee:\
 [My Heroku App](https://busybee-aa.herokuapp.com/)\
 [Sales Calculator by omnicalculator](https://www.omnicalculator.com/finance/percent-off)\
