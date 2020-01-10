@@ -28,19 +28,18 @@ def todo():
 
 @app.route('/mylists')
 def view_lists():
-    #View all lists along with budget, total spent, and budget difference. 
+    #View all lists along with budget, total spent, and budget difference.
     list_list = lists.find()
     prices = {}
 
-    for list in list_list:
+    for list in list_list: #list_list is all lists
         product_list = list['products']
-        listsum = 0
-        for products in product_list:
+        listsum = 0 #sum of everything on the lists is by default, 0.
+        for products in product_list: #For every product on the shopping list, add up all the prices to get the total.
             listsum += float(products['price'])
         prices[list['_id']] = listsum
-
-
     return render_template('Ashow_shoppinglist.html', lists=lists.find(), prices=prices)
+
 
 @app.route('/mylists/<list_id>', methods=['GET'])
 def show_list(list_id):
@@ -63,6 +62,7 @@ def new_list():
     #Create a New List
     return render_template('Anew_shoppinglist.html', list={}, title='New List', products=[None])
 
+
 @app.route('/mylists', methods=['POST'])
 def submit_list():
     #Submit a new list to the db.lists.
@@ -74,11 +74,13 @@ def submit_list():
     lists_id = lists.insert_one(new_list).inserted_id
     return redirect(url_for('view_lists', lists_id=lists_id))
 
+
 @app.route('/mylists/<list_id>/edit', methods = ['GET'])
 def edit_list(list_id):
     #edit my shopping list
     product_list = lists.find_one({'_id': ObjectId(list_id)})
     return render_template('Aedit_shoppinglist.html', list=product_list, list_id=list_id, products=product_list['products'])
+
 
 @app.route('/mylists/<list_id>/edit', methods=['POST'])
 def list_update(list_id):
@@ -96,13 +98,15 @@ def list_update(list_id):
         {'$set': updated_list})
     return redirect(url_for('view_lists', list_id=list_id))
 
+
 @app.route('/mylists/<list_id>/delete')
 def list_delete(list_id):
     #Delete a product
     lists.delete_one({'_id': ObjectId(list_id)})
     return redirect(url_for('view_lists'))
 
-# products
+
+# Routes for Products
 @app.route('/mylists/<list_id>/new')
 def new_product(list_id):
     #Create a new product
@@ -122,11 +126,11 @@ def submit_product(list_id):
     }
     print("New product: ", new_product)
     product_list.append(new_product)
-    # product_id = products.insert_one(new_product).inserted_id
     lists.update_one(
     {'_id': ObjectId(list_id)},
     {'$set': {'products': product_list}})
     return redirect(url_for('show_list', list_id=list_id))
+
 
 @app.route('/mylists/<list_id>/delete/<product_name>')
 def product_delete(list_id, product_name):
@@ -141,12 +145,12 @@ def product_delete(list_id, product_name):
     {'$set': {'products': product_list}})
     return redirect(url_for('view_lists'))
 
-# Calculator
+# Routes Pertaining to the Calculator
 @app.route('/calculator')
 def calculator():
     return render_template('calculator.html')
 
-#about page
+#Routes pertaining to the About Page
 @app.route('/about')
 def about():
     return render_template('about.html')
