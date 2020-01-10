@@ -11,8 +11,7 @@ Shopping List Creator which allows users to set a budget for each list.\
 Access to two calculators, a sale calculator and a normal calculator.
 
 :honeybee: Set Up :honeybee:\
-No Set Up Required!\
-Completed Web-Based.
+No Set Up Required!
 
 
 :honeybee: Links/Resources Used :honeybee:\
