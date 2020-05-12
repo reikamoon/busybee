@@ -1,4 +1,7 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, Response
+from flask_api import status
+from healthcheck import HealthCheck, EnvironmentDump
+from http import HTTPStatus
 import requests
 import json
 from bson.objectid import ObjectId
@@ -154,6 +157,11 @@ def calculator():
 @app.route('/about')
 def about():
     return render_template('about.html')
+
+#Health Check
+@app.route('/health')
+def health():
+    return Response("{'Status':'200 OK'}", status=200, mimetype='application/json')
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=os.environ.get('PORT', 5000))
