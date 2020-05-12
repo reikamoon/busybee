@@ -17,7 +17,7 @@ Head to [Local Host](http://127.0.0.1:5000/)
 
 :honeybee: Deployment :honeybee:\
 [Heroku Link](https://busybee-aa.herokuapp.com/)\
-[Caprover Link]("http://busybee.dev.moonazure.xyz/")
+[Caprover Link](http://busybee.dev.moonazure.xyz/)
 
 
 :honeybee: Links/Resources Used :honeybee:\
