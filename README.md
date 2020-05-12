@@ -11,7 +11,13 @@ Shopping List Creator which allows users to set a budget for each list.\
 Access to two calculators, a sale calculator and a normal calculator.
 
 :honeybee: Set Up :honeybee:\
-No Set Up Required!
+Install the dependencies listed on the requirements: pip3 install -r requirements.txt\
+Clone repository, and run "flask run"\
+Head to [Local Host](http://127.0.0.1:5000/)
+
+:honeybee: Deployment :honeybee:\
+[Heroku Link](https://busybee-aa.herokuapp.com/)
+[Caprover Link]("http://busybee.dev.moonazure.xyz/")
 
 
 :honeybee: Links/Resources Used :honeybee:\
